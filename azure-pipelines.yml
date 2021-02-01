@@ -32,14 +32,25 @@ steps:
     PackageFormat: 'Zip'
 
 
+- task: OctopusMetadata@4
+  inputs:
+    OctoConnectedServiceName: 'Octopus with jira'
+    Space: 'Spaces-1'
+    PackageId: 'NBAcompare'
+    PackageVersion: 'latest'
+    Replace: 'false'
+
+
 - task: OctopusCreateRelease@4
   inputs:
     OctoConnectedServiceName: 'Octopus with jira'
     Space: 'Spaces-1'
     ProjectGroup: 'ProjectGroups-1'
     ProjectName: 'Projects-1'
+    WorkItemReleaseNotes: true
     DeployToEnvironment: 'Environments-1'
-    
+    DeploymentProgress: true
+
 - task: OctopusDeployRelease@4
   inputs:
     OctoConnectedServiceName: 'Octopus with jira'
