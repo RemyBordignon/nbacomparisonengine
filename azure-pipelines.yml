@@ -31,15 +31,13 @@ steps:
     PackageId: 'NBAcompare'
     PackageFormat: 'Zip'
 
-
 - task: OctopusMetadata@4
   inputs:
     OctoConnectedServiceName: 'Octopus with jira'
     Space: 'Spaces-1'
     PackageId: 'NBAcompare'
-    PackageVersion: 'latest'
+    PackageVersion: '$(Build.BuildNumber)'
     Replace: 'false'
-
 
 - task: OctopusCreateRelease@4
   inputs:
